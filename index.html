@@ -109,8 +109,11 @@
 <p>Using an online OUI lookup tool, I found that the manufacturer of my network adapter is: <strong>AzureWave Technology Inc.</strong></p>
 <img src="oui_lookup.png" alt="OUI Lookup Result">
         
-        <h3>2.3. Flush ARP cache</h3>
-        <p>Insert screenshots showing the arp -a command before and after flushing the cache.</p>
+       <h3>2.3. Flush ARP cache</h3>
+<p>To observe the process of clearing the ARP cache, I first used the <code>arp -a</code> command to view the current entries. The screenshot below shows the populated ARP table.</p>
+<img src="arp_before.png" alt="ARP cache before flushing">
+<p>Next, I executed the <code>arp -d *</code> command to flush the entire cache. The second screenshot shows the command being executed, followed by another <code>arp -a</code>. This demonstrates how quickly the modern operating system repopulates the essential ARP entries (like the default gateway) after they have been cleared.</p>
+<img src="arp_after.png" alt="ARP cache after flushing command">
         
         <h3>2.4. Set the same IP address on two different hosts</h3>
         <p>Insert a screenshot of the IP address conflict error message.</p>
