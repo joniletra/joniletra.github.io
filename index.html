@@ -130,7 +130,10 @@
 <img src="dhcp_dora.png" alt="DHCP DORA Process in Wireshark">
         
         <h3>2.6. Release and renew IP address using ipconfig</h3>
-        <p>Insert screenshots of the ipconfig /release and ipconfig /renew command outputs.</p>
+<p>I used the <code>ipconfig /release</code> command to release the current IP address lease from the DHCP server. The screenshot below shows that after the command was executed, the IPv4 address for the Wi-Fi adapter was successfully removed.</p>
+<img src="ip_release.png" alt="Output of ipconfig /release command">
+<p>Subsequently, I executed the <code>ipconfig /renew</code> command to request a new IP address. The second screenshot shows the successful operation, with the DHCP server assigning a new IP address to my network adapter.</p>
+<img src="ip_renew.png" alt="Output of ipconfig /renew command">
         
         <h3>2.7. Change MAC address and verify IP address obtained</h3>
         <p>Insert a screenshot of the network adapter properties where you changed the MAC address and describe the results.</p>
