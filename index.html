@@ -5,60 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Link Layer Report</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; margin: 20px; }
-        h1, h2, h3 { color: #333; }
-        code { background-color: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
-        .container { max-width: 800px; margin: auto; }
-        img { max-width: 100%; height: auto; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; margin: 0; background-color: #f8f9fa; color: #212529; }
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; }
+        h1 { text-align: center; }
+        code { background-color: #e9ecef; padding: 3px 6px; border-radius: 4px; font-family: "Courier New", Courier, monospace; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        img { max-width: 100%; height: auto; border-radius: 4px; margin-top: 10px; display: block; margin-left: auto; margin-right: auto; }
+        .author-info { text-align: center; margin-bottom: 30px; font-style: italic; color: #6c757d; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Report: Data Link Layer</h1>
-        <p><strong>Author:</strong> [Your Name]</p>
-        <p><strong>Course:</strong> [Your Course Name]</p>
+        <div class="author-info">
+            <p><strong>Author:</strong> João Francisco Mendes Letra</p>
+            <p><strong>Course:</strong> Computer Science</p>
+        </div>
 
         <h2>Part 1: Theoretical</h2>
         
         <h3>1.1. Ethernet Standards, Limits, and Frame</h3>
-        <p>Ethernet Standards for Physical Layer: Ethernet has evolved over the years, with standards defining speed, media type, and distance. Key standards include:
-
-10BASE-T (Ethernet): Runs at 10 Mbps over twisted-pair copper wire.
-
-100BASE-TX (Fast Ethernet): Runs at 100 Mbps over twisted-pair copper wire, became the standard for many years.
-
-1000BASE-T (Gigabit Ethernet): Runs at 1 Gbps over twisted-pair copper wire (Cat 5e or better). It is the current standard for most wired LANs.
-
-10GBASE-T: Runs at 10 Gbps over twisted-pair copper wire (Cat 6a or better).
-
-Fiber Optic Standards (e.g., 1000BASE-SX, 10GBASE-LR): Used for longer distances and higher speeds, common in data centers and backbone networks.
-
-Ethernet Limits: The most common limit for Ethernet over twisted-pair (like 10BASE-T, 100BASE-TX, 1000BASE-T) is a maximum cable length of 100 meters per segment. This limitation is due to signal degradation and timing constraints for collision detection.
-
-Ethernet Frame: An Ethernet frame is the protocol data unit at the Data Link Layer. It encapsulates the network layer packet (e.g., an IP packet) and adds control information.
-
-The structure is as follows:
-
-Preamble & SFD (Start Frame Delimiter): Used for clock synchronization.
-
-Destination MAC Address: 6-byte address of the recipient.
-
-Source MAC Address: 6-byte address of the sender.
-
-Type / Length: Indicates the protocol of the encapsulated payload (e.g., 0x0800 for IPv4).
-
-Payload (Data): The actual data from the upper layer (46 to 1500 bytes).
-
-Frame Check Sequence (FCS): A 4-byte CRC (Cyclic Redundancy Check) value used for error detection.</p>
+        <p>Ethernet standards define the physical and data link layer specifications for local area networks. They have evolved to support higher speeds and different media types.</p>
+        <ul>
+            <li><strong>10BASE-T (Ethernet):</strong> 10 Mbps over twisted-pair copper wire.</li>
+            <li><strong>100BASE-TX (Fast Ethernet):</strong> 100 Mbps over twisted-pair copper wire, was a very common standard.</li>
+            <li><strong>1000BASE-T (Gigabit Ethernet):</strong> 1 Gbps over twisted-pair copper wire (Cat 5e or better), the current standard for most wired LANs.</li>
+            <li><strong>10GBASE-T:</strong> 10 Gbps over twisted-pair copper wire (Cat 6a or better), used in high-performance workstations and servers.</li>
+            <li><strong>Fiber Optic Standards (e.g., 1000BASE-SX, 10GBASE-LR):</strong> Used for longer distances and immunity to electromagnetic interference, common in network backbones.</li>
+        </ul>
+        <p><strong>Ethernet Limits:</strong> For Ethernet over unshielded twisted-pair  cabling, the maximum segment length is typically <strong>100 meters</strong>. This is due to signal attenuation  and timing requirements for collision detection in half-duplex modes.</p>
+        <p><strong>Ethernet Frame:</strong> The Ethernet frame is the data unit used to transport data across the network. It encapsulates a network layer packet  and adds header and trailer information for addressing and error checking.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ethernet_Frame.svg/800px-Ethernet_Frame.svg.png" alt="Ethernet Frame Structure">
+        <p>The main components are: Destination MAC, Source MAC, Type , the Payload , and a Frame Check Sequence  for error detection.</p>
 
         <h3>1.2. MAC Address and Broadcasting</h3>
-        <p>...</p>
+        <p>A <strong>MAC (Media Access Control) address</strong> is a 48-bit (6-byte) unique identifier assigned to a Network Interface Card  by the manufacturer. It operates at the Data Link Layer  and is often called a hardware or physical address. It is written in hexadecimal, like <code>00:1A:2B:3C:4D:5E</code>.</p>
+        <ul>
+            <li>The first 3 bytes form the <strong>Organizationally Unique Identifier </strong>, identifying the manufacturer.</li>
+            <li>The last 3 bytes are a unique serial number assigned by the manufacturer.</li>
+        </ul>
+        <p><strong>Broadcasting</strong> is the act of sending a data packet to all hosts on a local network segment. This is achieved by using a special destination MAC address: <code>FF:FF:FF:FF:FF:FF</code>. Any frame sent to this address is processed by every device in the broadcast domain.</p>
 
+        <h3>1.3. The Difference Between Hub, Switch, and Router</h3>
+        <ul>
+            <li><strong>Hub (Layer 1):</strong> A hub is a simple device that regenerates and forwards any incoming electrical signal to all of its ports. All connected devices share the same bandwidth and form a single <strong>collision domain</strong>. It is an unintelligent, legacy device.</li>
+            <li><strong>Switch (Layer 2):</strong> A switch is an intelligent device that forwards data based on MAC addresses. It learns which device is connected to which port and sends frames only to the intended destination port. Each port is its own separate <strong>collision domain</strong>, dramatically improving efficiency and reducing traffic congestion.</li>
+            <li><strong>Router (Layer 3):</strong> A router is a more advanced device used to connect different networks . It makes forwarding decisions based on IP addresses . Routers create boundaries for broadcasts, meaning each interface on a router is a separate <strong>broadcast domain</strong>.</li>
+        </ul>
+
+        <h3>1.4. CSMA/CD, Collision, Half and Full Duplex</h3>
+        <p><strong>CSMA/CD (Carrier Sense Multiple Access with Collision Detection)</strong> is the protocol used in legacy half-duplex Ethernet networks to manage access to a shared physical medium.</p>
+        <ol>
+            <li><strong>Carrier Sense:</strong> Listen to the network to check if it is free.</li>
+            <li><strong>Multiple Access:</strong> If the network is free, any device can start transmitting.</li>
+            <li><strong>Collision Detection:</strong> While transmitting, the device listens for other signals. If another signal is detected, a <strong>collision</strong> has occurred. The device stops, sends a jam signal, waits a random amount of time , and then retries.</li>
+        </ol>
+        <p>A <strong>collision</strong> is the result of two or more devices attempting to transmit on a shared medium at the same time, corrupting the data.</p>
+        <ul>
+            <li><strong>Half-duplex:</strong> Data can be sent or received, but not at the same time. CSMA/CD is required here. Hubs operate in half-duplex.</li>
+            <li><strong>Full-duplex:</strong> Data can be sent and received simultaneously. This is possible in modern switched networks, where there are dedicated send and receive paths. Collisions do not occur in full-duplex mode, so CSMA/CD is disabled.</li>
+        </ul>
+
+        <h3>1.5. ARP Request, Detecting Doubled IP Address</h3>
+        <p><strong>ARP (Address Resolution Protocol)</strong> is the protocol used to resolve a Layer 3 IP address into a Layer 2 MAC address. When a host needs to send a packet to another host on the same local network, it needs the destination's MAC address.</p>
+        <p>An <strong>ARP Request</strong> is a broadcast message sent to the entire LAN, containing the question: "Who has the IP address <code>192.168.1.10</code>?". The host with that IP address responds with a unicast <strong>ARP Reply</strong> containing its MAC address.</p>
+        <p><strong>Detecting Doubled IP Address:</strong> Operating systems use a special type of ARP called <strong>Gratuitous ARP</strong> to detect IP conflicts. When a device obtains a new IP address, it broadcasts an ARP request for its *own* IP address. If it receives an ARP reply from another device, it knows that the IP address is already in use and reports an IP address conflict.</p>
+
+        <h3>1.6. BOOTP, DHCP</h3>
+        <p><strong>BOOTP (Bootstrap Protocol)</strong> is an older network protocol used by a client to obtain an IP address from a server. It was largely static, requiring a pre-configured table on the server mapping MAC addresses to specific IP addresses.</p>
+        <p><strong>DHCP (Dynamic Host Configuration Protocol)</strong> is the modern, more powerful successor to BOOTP. It automates the assignment of IP addresses, subnet masks, default gateways, and DNS servers. DHCP can lease IP addresses from a pool for a specific period.</p>
+        <p>The DHCP process is known as <strong>DORA</strong>:</p>
+        <ol>
+            <li><strong>Discover:</strong> The client broadcasts a DHCPDISCOVER message to find DHCP servers.</li>
+            <li><strong>Offer:</strong> DHCP servers respond with a DHCPOFFER message, offering an IP address lease.</li>
+            <li><strong>Request:</strong> The client broadcasts a DHCPREQUEST message, accepting one of the offers.</li>
+            <li><strong>Acknowledge (ACK):</strong> The server finalizes the lease by sending a DHCPACK message with the configuration details.</li>
+        </ol>
+
+        <h3>1.7. VLANs</h3>
+        <p>A <strong>VLAN (Virtual Local Area Network)</strong> allows a single physical network switch to be logically segmented into multiple, separate broadcast domains. Devices in one VLAN cannot communicate directly with devices in another VLAN; they require a Layer 3 device (like a router) to route traffic between them.</p>
+        <p>VLANs are used to:</p>
+        <ul>
+            <li><strong>Improve Security:</strong> Isolate sensitive traffic .</li>
+            <li><strong>Increase Performance:</strong> Reduce the size of broadcast domains, which reduces unnecessary broadcast traffic for hosts.</li>
+            <li><strong>Simplify Management:</strong> Group users by function rather than physical location.</li>
+        </ul>
+        
         <h2>Part 2: Practical</h2>
+        <p><em>This section contains the results of the practical exercises.</em></p>
 
         <h3>2.1. Find MAC Address and Default Gateway's MAC</h3>
-        <p>...</p>
-
-        </div>
+        <p>Here you should insert a screenshot of your `ipconfig /all` command and a screenshot from Wireshark showing the ARP reply from your gateway.</p>
+        <h3>2.2. Find the producer of your network adapter</h3>
+        <p>Write down the result of your OUI lookup here.</p>
+        
+        <h3>2.3. Flush ARP cache</h3>
+        <p>Insert screenshots showing the `arp -a` command before and after flushing the cache.</p>
+        
+        <h3>2.4. Set the same IP address on two different hosts</h3>
+        <p>Insert a screenshot of the IP address conflict error message.</p>
+        
+        <h3>2.5. Using Wireshark save the DHCP packets</h3>
+        <p>Insert a screenshot from Wireshark showing the DORA (Discover, Offer, Request, ACK) packets.</p>
+        
+        <h3>2.6. Release and renew IP address using ipconfig</h3>
+        <p>Insert screenshots of the `ipconfig /release` and `ipconfig /renew` command outputs.</p>
+        
+        <h3>2.7. Change MAC address and verify IP address obtained</h3>
+        <p>Insert a screenshot of the network adapter properties where you changed the MAC address and describe the results.</p>
+        
+    </div>
 </body>
 </html>
