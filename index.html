@@ -21,7 +21,35 @@
         <h2>Part 1: Theoretical</h2>
         
         <h3>1.1. Ethernet Standards, Limits, and Frame</h3>
-        <p>...</p>
+        <p>Ethernet Standards for Physical Layer: Ethernet has evolved over the years, with standards defining speed, media type, and distance. Key standards include:
+
+10BASE-T (Ethernet): Runs at 10 Mbps over twisted-pair copper wire.
+
+100BASE-TX (Fast Ethernet): Runs at 100 Mbps over twisted-pair copper wire, became the standard for many years.
+
+1000BASE-T (Gigabit Ethernet): Runs at 1 Gbps over twisted-pair copper wire (Cat 5e or better). It is the current standard for most wired LANs.
+
+10GBASE-T: Runs at 10 Gbps over twisted-pair copper wire (Cat 6a or better).
+
+Fiber Optic Standards (e.g., 1000BASE-SX, 10GBASE-LR): Used for longer distances and higher speeds, common in data centers and backbone networks.
+
+Ethernet Limits: The most common limit for Ethernet over twisted-pair (like 10BASE-T, 100BASE-TX, 1000BASE-T) is a maximum cable length of 100 meters per segment. This limitation is due to signal degradation and timing constraints for collision detection.
+
+Ethernet Frame: An Ethernet frame is the protocol data unit at the Data Link Layer. It encapsulates the network layer packet (e.g., an IP packet) and adds control information.
+
+The structure is as follows:
+
+Preamble & SFD (Start Frame Delimiter): Used for clock synchronization.
+
+Destination MAC Address: 6-byte address of the recipient.
+
+Source MAC Address: 6-byte address of the sender.
+
+Type / Length: Indicates the protocol of the encapsulated payload (e.g., 0x0800 for IPv4).
+
+Payload (Data): The actual data from the upper layer (46 to 1500 bytes).
+
+Frame Check Sequence (FCS): A 4-byte CRC (Cyclic Redundancy Check) value used for error detection.</p>
 
         <h3>1.2. MAC Address and Broadcasting</h3>
         <p>...</p>
