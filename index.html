@@ -119,7 +119,15 @@
         <p>Insert a screenshot of the IP address conflict error message.</p>
         
         <h3>2.5. Using Wireshark save the DHCP packets</h3>
-        <p>Insert a screenshot from Wireshark showing the DORA (Discover, Offer, Request, ACK) packets.</p>
+<p>By filtering for the 'bootp' protocol in Wireshark while running the <code>ipconfig /release</code> and <code>ipconfig /renew</code> commands, I was able to capture the four-step DHCP process, also known as DORA.</p>
+<p>The screenshot below shows the sequence:</p>
+<ul>
+    <li><strong>Discover:</strong> The client sends a broadcast message to find a DHCP server.</li>
+    <li><strong>Offer:</strong> The DHCP server offers an IP address to the client.</li>
+    <li><strong>Request:</strong> The client accepts the offer and requests the IP address.</li>
+    <li><strong>Acknowledge (ACK):</strong> The server confirms the IP address lease.</li>
+</ul>
+<img src="dhcp_dora.png" alt="DHCP DORA Process in Wireshark">
         
         <h3>2.6. Release and renew IP address using ipconfig</h3>
         <p>Insert screenshots of the ipconfig /release and ipconfig /renew command outputs.</p>
